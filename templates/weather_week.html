@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ weather.city.name }} Weekly Weather</h1>
+<ul>
+    {% for day in weather.list %}
+    <li>
+        {{ day.dt_txt }}: {{ day.main.temp }} °C, {{ day.weather[0].description }}
+    </li>
+    {% endfor %}
+</ul>
+<a href="/">Search again</a>
+{% endblock %}

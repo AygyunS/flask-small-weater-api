@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Hello, {{ current_user.username }}!</h1>
+  <h2>Your Default City: {{ main_location }}</h2>
+  <a href="{{ url_for('change_default_city') }}">Change Default City</a>
+  <br><br>
+  <h3>Weather Forecast for {{ main_location }}</h3>
+  {% if weather %}
+    <p>Temperature: {{ weather.main.temp }} °C</p>
+    <p>Weather: {{ weather.weather[0].description }}</p>
+  {% else %}
+    <p>Unable to fetch weather data for your default city.</p>
+  {% endif %}
+  <form method="POST" action="{{ url_for('weather') }}">
+    <label for="city">City:</label>
+    <input type="text" name="city">
+    <label for="forecast_type">Forecast Type:</label>
+    <select name="forecast_type">
+      <option value="current">Current</option>
+      <option value="week">Week</option>
+    </select>
+    <label for="units">Units:</label>
+    <select name="units">
+      <option value="metric">Celsius</option>
+      <option value="imperial">Fahrenheit</option>
+    </select>
+    <button type="submit">Get Weather</button>
+  </form>
+{% endblock %}

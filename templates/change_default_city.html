@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Change Default City</h1>
+<form method="post">
+  <label for="main_location">New Default City:</label>
+  <input type="text" name="main_location" required>
+  <button type="submit">Update</button>
+</form>
+{% endblock %}
